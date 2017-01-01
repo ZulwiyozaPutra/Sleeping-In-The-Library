@@ -53,7 +53,22 @@ class ViewController: UIViewController {
                         displayError("Could not parse the data as JSON: '\(data)'")
                         return
                     }
-                    print(parsedResult)
+                    if let photosDictionary = parsedResult[Constants.FlickrResponseKeys.Photos] as? [String: AnyObject], let photoArray = photosDictionary[Constants.FlickrResponseKeys.Photo] as? [[String: AnyObject]] {
+
+                        let randomPhotoNumber = generateRandomNumber(upperBound: photoArray.count)
+                        let photoDictionary = photoArray[randomPhotoNumber] as [String: AnyObject]
+                        
+                        if let imageURLString = photoDictionary[Constants.FlickrResponseKeys.MediumURL] as? String, let photoTitle = photoDictionary[Constants.FlickrResponseKeys.Title] as? String {
+                            let imageURL = URL(string: imageURLString)
+                            if let imageData = try? Data(contentsOf: imageURL!) {
+                                performUIUpdatesOnMain {
+                                    self.photoTitleLabel.text = photoTitle
+                                    self.backgroundImageView.image = UIImage(data: imageData)
+                                    self.setUIEnabled(true)
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
