@@ -10,6 +10,16 @@ import Foundation
 
 struct Constants {
     
+    //URL
+    static let methodParametersDictionary = [
+        Constants.FlickrParameterKeys.Method: Constants.FlickrParameterValues.GalleryPhotosMethod,
+        Constants.FlickrParameterKeys.APIKey: Constants.FlickrParameterValues.APIKey,
+        Constants.FlickrParameterKeys.GalleryID: Constants.FlickrParameterValues.GalleryID,
+        Constants.FlickrParameterKeys.Extras: Constants.FlickrParameterValues.MediumURL,
+        Constants.FlickrParameterKeys.Format: Constants.FlickrParameterValues.ResponseFormat,
+        Constants.FlickrParameterKeys.NoJSONCallback: Constants.FlickrParameterValues.DisableJSONCallback
+    ]
+    
     // MARK: Flickr
     struct Flickr {
         static let APIBaseURL = "https://api.flickr.com/services/rest/"
@@ -27,7 +37,7 @@ struct Constants {
     
     // MARK: Flickr Parameter Values
     struct FlickrParameterValues {
-        static let APIKey = "YOUR API KEY HERE"
+        static let APIKey = "d52c20c1abe79b0aea2c7ff3a9db2ca7"
         static let ResponseFormat = "json"
         static let DisableJSONCallback = "1" /* 1 means "yes" */
         static let GalleryPhotosMethod = "flickr.galleries.getPhotos"
